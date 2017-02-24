@@ -66,10 +66,12 @@ public class TemplateOpMode_Iterative extends OpMode
      * Code to run ONCE when the driver hits INIT
      */
      
+    //This function operates the two motors for the ball intake.
     private void intake(int speed)
     {
         leftIntakeMotor.setPower(speed);
         rightIntakeMotor.setPower(speed);
+        return;
     }
     
     @Override
@@ -118,6 +120,7 @@ public class TemplateOpMode_Iterative extends OpMode
         leftMotor.setPower(-gamepad1.left_stick_y);
         rightMotor.setPower(-gamepad1.right_stick_y);
         
+        //Operate the intake if either of the buttons are pushed
         if(gamepad1.right_bumper || gamepad1.left_bumper)
         {
              intake(1);
