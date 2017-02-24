@@ -1,0 +1,39 @@
+Team Code Conventions
+
+Use camelCase for all variable/attribute and function/method names. This is first letter lowercase, 
+the first letter of each word after that uppercase
+
+Class, struct, enum names have Capital first letter
+
+Every method or function must have at least one comment describing it's purpose and operation or logic.
+Every name should have at least a passing relationship to the purpose for which it exists.
+
+Whitespace is your friend, use it to make sure that your code is easily readable
+
+Use uniform formatting. 
+
+if/while/for code is formatted:
+
+if(statement)
+{
+     //Five Spaces
+}
+else if(otherStatement)
+{
+     //Five Spaces
+}
+
+Do not do any of this formatting
+
+if(statement) {
+  //Tab
+} else if() {
+//No indent
+}
+else
+     //One line of code
+
+All of these are bad practice and will receive complaints from me.
+
+Switch statements should be avoided wherever possible.
+Do not use break.
