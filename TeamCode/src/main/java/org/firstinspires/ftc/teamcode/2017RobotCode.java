@@ -57,12 +57,21 @@ public class TemplateOpMode_Iterative extends OpMode
 {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftMotor = null;
-    private DcMotor rightMotor = null;
+    private DcMotor leftMotor = hardwareMap.dcMotor.get("lDrive");
+    private DcMotor rightMotor = hardwareMap.dcMotor.get("rDrive");
+    private DCMotor leftIntakeMotor = hardwareMap.dcMotor.get("rIntake");
+    private DCMotor rightIntakeMotor = hardwareMap.dcMotor.get("lIntake");
 
     /*
      * Code to run ONCE when the driver hits INIT
      */
+     
+    private void intake(int speed)
+    {
+        leftIntakeMotor.setPower(speed);
+        rightIntakeMotor.setPower(speed);
+    }
+    
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
@@ -101,11 +110,22 @@ public class TemplateOpMode_Iterative extends OpMode
      */
     @Override
     public void loop() {
+    
+    
         telemetry.addData("Status", "Running: " + runtime.toString());
 
         // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
-        // leftMotor.setPower(-gamepad1.left_stick_y);
-        // rightMotor.setPower(-gamepad1.right_stick_y);
+        leftMotor.setPower(-gamepad1.left_stick_y);
+        rightMotor.setPower(-gamepad1.right_stick_y);
+        
+        if(gamepad1.right_bumper || gamepad1.left_bumper)
+        {
+             intake(1);
+        }
+        else
+        {
+            intake(0);
+        }
     }
 
     /*
